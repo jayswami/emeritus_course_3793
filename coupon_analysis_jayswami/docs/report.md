@@ -20,11 +20,11 @@
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/missing_data_final.png" alt="Missing Data" style="width: 100%;"/>
+                <img src="images//missing_data_final.png" alt="Missing Data" style="width: 100%;"/>
                 <em>Figure: Missing Data</em>
             </td>
             <td style="text-align: center;">
-                <img src="../images/no_answer_final.png" alt="Cleaned Data" style="width: 100%;"/>
+                <img src="images//no_answer_final.png" alt="Cleaned Data" style="width: 100%;"/>
                 <em>Figure: Cleaned up Data</em>
             </td>
         </tr>
@@ -78,11 +78,11 @@ I did some pre analysis of the income ranges, and decided that have 3 income bra
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/income.png" alt="Coupons Distribution By Income" style="width: 100%;"/>
+                <img src="images//income.png" alt="Coupons Distribution By Income" style="width: 100%;"/>
                 <em>Figure: Distribution By Income</em>
             </td>
             <td style="text-align: center;">
-                <img src="../images/income_bracket.png" alt="Coupons Distribution By Income Bracket" style="width: 100%;"/>
+                <img src="images//income_bracket.png" alt="Coupons Distribution By Income Bracket" style="width: 100%;"/>
                 <em>Figure: Distribution By income Brackets</em>
             </td>
         </tr>
@@ -96,7 +96,7 @@ I did some pre analysis of the income ranges, and decided that have 3 income bra
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coupon_overall_acceptance.png" alt="Coupons Acceptance" style="width: 100%;"/>
+                <img src="images//coupon_overall_acceptance.png" alt="Coupons Acceptance" style="width: 100%;"/>
                 <em>Figure: Coupons Acceptance Rate</em>
             </td>
         </tr>
@@ -116,7 +116,7 @@ Initially, the 'Coffee House' coupons were the most distributed (3,996 instances
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coupon_count_acceptance1.png" alt="Coupons Acceptance" style="width: 100%;"/>
+                <img src="images//coupon_count_acceptance1.png" alt="Coupons Acceptance" style="width: 100%;"/>
                 <em>Figure: Coupons Acceptance Rate</em>
             </td>
         </tr>
@@ -147,7 +147,7 @@ This analysis is preliminary and based solely on raw numbers. It is important to
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/temp_histogram.png" alt="Temperature Distribution" style="width: 100%;"/>
+                <img src="images//temp_histogram.png" alt="Temperature Distribution" style="width: 100%;"/>
                 <em>Figure: Temperature Distribution</em>
             </td>
         </tr>
@@ -181,7 +181,7 @@ We will be doing this next.
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/bar_coupon_acceptance.png" alt="Bar Coupons Acceptance" style="width: 100%;"/>
+                <img src="images//bar_coupon_acceptance.png" alt="Bar Coupons Acceptance" style="width: 100%;"/>
                 <em>Figure: Bar Coupons Acceptance Rate</em>
             </td>
         </tr>
@@ -206,7 +206,7 @@ This analysis underscores the importance of consumer behavior understanding in d
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/bar_3_or_fewer.png" alt="Bar Coupon Acceptance Rate by Visit Frequency" style="width: 100%;"/>
+                <img src="images//bar_3_or_fewer.png" alt="Bar Coupon Acceptance Rate by Visit Frequency" style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rate by Bar Visit Frequency</em>
             </td>
         </tr>
@@ -231,7 +231,7 @@ This analysis underscores the importance of consumer behavior understanding in d
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/bar_above_25_2.png" alt="Bar Coupon Acceptance Rate by Driver Category " style="width: 100%;"/>
+                <img src="images//bar_above_25_2.png" alt="Bar Coupon Acceptance Rate by Driver Category " style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rate by Driver Category</em>
             </td>
         </tr>
@@ -252,7 +252,7 @@ Intrigued by the results from Section 1, a further analysis was conducted to und
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/bar_acceptance_by_age.png" alt="Bar Coupon Acceptance Rate by Age Group" style="width: 100%;"/>
+                <img src="images//bar_acceptance_by_age.png" alt="Bar Coupon Acceptance Rate by Age Group" style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rate by Age Group</em>
             </td>
         </tr>
@@ -273,7 +273,7 @@ The analysis focused on two driver categories based on their bar visit frequency
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/Non_Farmer_No_Kids_Freq_Bar1.png" alt="Bar Coupon Acceptance Rate by Driver Category" style="width: 100%;"/>
+                <img src="images//Non_Farmer_No_Kids_Freq_Bar1.png" alt="Bar Coupon Acceptance Rate by Driver Category" style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rate by Driver Category</em>
             </td>
         </tr>
@@ -292,7 +292,7 @@ This report analyzes the acceptance rates of bar coupons among drivers in a data
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/Lfstyl_Demogphcs_Bar.png" alt="Bar Coupon Acceptance Rates By Lifestyle and Demographics" style="width: 100%;"/>
+                <img src="images//Lfstyl_Demogphcs_Bar.png" alt="Bar Coupon Acceptance Rates By Lifestyle and Demographics" style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rates By Lifestyle and Demographics</em>
             </td>
         </tr>
@@ -330,7 +330,7 @@ The analysis indicates that while the presence of kids as passengers has an impa
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/Bar_Unified_Acceptance.png" alt="Bar Coupon Overall Acceptance Rates" style="width: 100%;"/>
+                <img src="images//Bar_Unified_Acceptance.png" alt="Bar Coupon Overall Acceptance Rates" style="width: 100%;"/>
                 <em>Figure: Bar Coupon Acceptance Rates</em>
             </td>
         </tr>
@@ -393,7 +393,7 @@ We will be conducting more analyses on Coffee House coupons next to uncover thes
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coffee_coupon_acceptance1.png" alt="Coffee Coupons Acceptance" style="width: 100%;"/>
+                <img src="images//coffee_coupon_acceptance1.png" alt="Coffee Coupons Acceptance" style="width: 100%;"/>
                 <em>Figure: Coffee Coupons Acceptance Rate</em>
             </td>
         </tr>
@@ -415,7 +415,7 @@ Our expectation was based on the premise that drivers driving alone might be mor
 
 
 <div align="center">
-    <img src="../images/coffee_coupon_alone_acceptance.png" alt="Coffee Coupons Acceptance" style="width: 80%;"/>
+    <img src="images//coffee_coupon_alone_acceptance.png" alt="Coffee Coupons Acceptance" style="width: 80%;"/>
     <br>
     <em>Figure: Coffee Coupons Acceptance Rate for Alone vs Others</em>
 </div>
@@ -436,11 +436,11 @@ Building on our initial findings, we expanded our analysis to include the accept
 
 ### Visual Representation of Findings
 <div align="center">
-    <img src="../images/coffee_coupon_passenger__acceptance.png" alt="Acceptance by Passenger Type" style="width: 80%;"/>
+    <img src="images//coffee_coupon_passenger__acceptance.png" alt="Acceptance by Passenger Type" style="width: 80%;"/>
     <br>
     <em>Figure 1: Acceptance Rates by Passenger Type</em>
     <br><br>
-    <img src="../images/coffee_coupon_time__acceptance.png" alt="Acceptance by Time of Day" style="width: 80%;"/>
+    <img src="images//coffee_coupon_time__acceptance.png" alt="Acceptance by Time of Day" style="width: 80%;"/>
     <br>
     <em>Figure 2: Acceptance Rates by Time of Day</em>
 </div>
@@ -462,7 +462,7 @@ Key findings from our analysis of Coffee House coupon offers to passengers trave
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coffee_coupon_alone_missing.png" alt="Count of Coffee House Coupon Offers for Alone Passengers by Time of Day" style="width: 80%;"/>
+                <img src="images//coffee_coupon_alone_missing.png" alt="Count of Coffee House Coupon Offers for Alone Passengers by Time of Day" style="width: 80%;"/>
                 <em>Figure: Count of Coffee House Coupon Offers for Alone Passengers by Time of Day</em>
             </td>
         </tr>
@@ -480,7 +480,7 @@ As part of our ongoing analysis of the Coffee House coupon dataset, we extended 
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coffee_more_attributes.png" alt="Coffee House Coupon Acceptance Rates" style="width: 100%;"/>
+                <img src="images//coffee_more_attributes.png" alt="Coffee House Coupon Acceptance Rates" style="width: 100%;"/>
                 <em>Figure: Coffee House Coupon Acceptance Rates</em>
             </td>
         </tr>
@@ -526,7 +526,7 @@ This section of our analysis focuses on the distribution of Coffee House coupon 
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coffee_destination_acceptance.png" alt="Coffee House Coupon Acceptance and Rejection by Destination" style="width: 80%;"/>
+                <img src="images//coffee_destination_acceptance.png" alt="Coffee House Coupon Acceptance and Rejection by Destination" style="width: 80%;"/>
                 <em>Figure: Coffee House Coupon Acceptance and Rejection by Destination</em>
             </td>
         </tr>
@@ -555,7 +555,7 @@ In our continued analysis of Coffee House coupon data, we have now expanded our 
     <table>
         <tr>
             <td style="text-align: center;">
-                <img src="../images/coffee_destination_passenger_acceptance2.png" alt="Coffee House Coupon Acceptance Rate by Destination and Passenger Type" style="width: 70%;"/>
+                <img src="images//coffee_destination_passenger_acceptance2.png" alt="Coffee House Coupon Acceptance Rate by Destination and Passenger Type" style="width: 70%;"/>
                 <em>Figure: Acceptance Rates by Destination and Passenger Type</em>
             </td>
         </tr>
