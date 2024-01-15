@@ -110,14 +110,66 @@ def create_stacked_bar_plot_multi(grouping_columns, plot_title, df_cleaned,rotat
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.2)  # Adjust bottom margin
 
-   
+
     image_base64 = save_plot_as_base64(buffer, plt, rotation,yscale)
-    
+
 
     return image_base64
 
 # Example usage:
 # image_base64 = create_stacked_bar_plot(['Department', 'Experience_Level'], 'Department and Experience Level Acceptance Rate', df_cleaned, ordering=['Sales', 'HR', 'IT'])
+
+def create_subplot_grid(df, columns, plot_title, rotation=0, yscale='linear'):
+    # Create a 3x2 subplot grid
+    fig, axes = plt.subplots(2, 3, figsize=(15, 10), sharex=False)
+    axes = axes.flatten()
+
+    for i, column in enumerate(columns):
+        # Group by the column and calculate acceptance counts
+        acceptance_counts = df.groupby([column, 'Y']).size().unstack().fillna(0)
+        total_responses = acceptance_counts.sum(axis=1)
+        percentages = acceptance_counts.divide(total_responses, axis=0) * 100
+
+        # Plotting each segment with actual counts
+        for index, row in acceptance_counts.iterrows():
+            category_label = str(index)  # Convert tuple to string for labeling
+            total_count = row.sum()
+            accept_count = row.get(1, 0)
+            reject_count = row.get(0, 0)
+
+            # Percentages for annotation
+            accept_percentage = (accept_count / total_count) * 100
+            reject_percentage = (reject_count / total_count) * 100
+
+            axes[i].bar(category_label, accept_count, color='green', alpha=0.6)
+            axes[i].bar(category_label, reject_count, bottom=accept_count, color='red', alpha=0.6)
+
+            # Annotating the bars with percentages
+            if accept_count > 0:
+                axes[i].text(category_label, accept_count / 2, f'{accept_percentage:.1f}%', ha='center', va='center',
+                             color='black')
+            if reject_count > 0:
+                axes[i].text(category_label, accept_count + reject_count / 2, f'{reject_percentage:.1f}%', ha='center',
+                             va='center', color='black')
+
+        axes[i].set_title(f'Stacked Bar Plot for {column}')
+        axes[i].set_xlabel(column)
+        axes[i].set_ylabel('Frequency')
+        axes[i].tick_params(axis='x', rotation=rotation)
+
+    # Adjust layout and add the main title
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.9, hspace=0.6)  # Increased hspace for better spacing between rows
+    fig.suptitle(plot_title, fontsize=16)
+    fig.subplots_adjust(wspace=0.4)
+
+    # Hide any unused subplots
+    for j in range(i + 1, len(axes)):
+        axes[j].axis('off')
+
+    image_base64 = save_plot_as_base64(buffer, plt, rotation, yscale)
+
+    return image_base64
 
 def create_overall_stacked_bar_plot(plot_title, df_cleaned, rotation=0, yscale='linear'):
     plt.figure(figsize=(12, 8))
