@@ -220,7 +220,12 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
     # Apply each filter and plot the corresponding bar
     for i, (filter_condition, label) in enumerate(zip(filters, filter_labels)):
         # Apply filter
-        filtered_df = df_cleaned[filter_condition]
+        if filter_condition is not None:
+            filtered_df = df_cleaned.query(filter_condition) if isinstance(filter_condition, str) else df_cleaned[
+                filter_condition]
+        else:
+            filtered_df = df_cleaned
+
 
         # Calculate acceptance counts
         acceptance_counts = filtered_df['Y'].value_counts().reindex([0, 1], fill_value=0)
@@ -254,9 +259,10 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
     # Create custom legend entries
 #     legend_entries = [plt.Line2D([0], [0], color='w', marker='o', markerfacecolor='g', label=group_descriptions[label]) for label in filter_labels]
 #     plt.legend(handles=legend_entries, title='Group Descriptions')
-
-    legend_labels = [f'{key}: {value}' for key, value in group_descriptions.items()]
-    plt.legend(title='Group Descriptions', title_fontsize='13', loc='upper right', labels=legend_labels, borderaxespad=0.)
+    if group_descriptions is not None:
+        legend_labels = [f'{key}: {value}' for key, value in group_descriptions.items()]
+        plt.legend(title='Group Descriptions', title_fontsize='13', loc='upper right', labels=legend_labels,
+                   borderaxespad=0.)
 
     image_base64 = save_plot_as_base64(buffer, plt, rotation,yscale)
 
