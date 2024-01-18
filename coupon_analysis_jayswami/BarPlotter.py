@@ -256,9 +256,7 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.2)
 
-    # Create custom legend entries
-#     legend_entries = [plt.Line2D([0], [0], color='w', marker='o', markerfacecolor='g', label=group_descriptions[label]) for label in filter_labels]
-#     plt.legend(handles=legend_entries, title='Group Descriptions')
+
     if group_descriptions is not None:
         legend_labels = [f'{key}: {value}' for key, value in group_descriptions.items()]
         plt.legend(title='Group Descriptions', title_fontsize='13', loc='upper right', labels=legend_labels,
@@ -293,3 +291,82 @@ def save_plot_as_base64(buffer, plt, rotation_angle=0, yscale='linear'):
 # Usage example
 # Plot something with matplotlib...
 # image_base64 = save_plot_as_base64(buffer, plt)
+
+
+def create_subplot_grid_dflist(dfs, column, plot_title, subplot_labels, rotation=0, yscale='linear', ordering=None,
+                               buffer=io.BytesIO()):
+    # DataFrame to store results
+    results_list = []  # List to collect DataFrame rows
+
+    # Check if the number of DataFrames matches the number of subplot labels
+    if len(dfs) != len(subplot_labels):
+        raise ValueError("The number of DataFrames and subplot labels must be the same")
+
+    # Create a 2x2 subplot grid
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10), sharex=False)
+    axes = axes.flatten()
+
+    for i, df in enumerate(dfs):
+        # Group by the column and calculate acceptance counts
+        acceptance_counts = df.groupby([column, 'Y']).size().unstack().fillna(0)
+        total_responses = acceptance_counts.sum(axis=1)
+
+        if ordering:
+            acceptance_counts = acceptance_counts.reindex(ordering)
+
+        # Plotting each segment with actual counts
+        for index, row in acceptance_counts.iterrows():
+            category_label = str(index)
+            total_count = row.sum()
+            accept_count = row.get(1, 0)
+            reject_count = row.get(0, 0)
+            accept_percentage = (accept_count / total_count) * 100
+            reject_percentage = (reject_count / total_count) * 100
+
+            # Add row to results list
+            results_list.append({
+                'subplot_label': subplot_labels[i],
+                'category': category_label,
+                'total_count': total_count,
+                'accept_count': accept_count,
+                'reject_count': reject_count,
+                'accept_percentage': accept_percentage,
+                'reject_percentage': reject_percentage
+            })
+
+            # Plotting
+            axes[i].bar(category_label, accept_count, color='green', alpha=0.6)
+            axes[i].bar(category_label, reject_count, bottom=accept_count, color='red', alpha=0.6)
+
+            # Annotating the bars with percentages
+            if accept_count > 0:
+                axes[i].text(category_label, accept_count / 2, f'{accept_percentage:.1f}%', ha='center', va='center',
+                             color='black')
+            if reject_count > 0:
+                axes[i].text(category_label, accept_count + reject_count / 2, f'{reject_percentage:.1f}%', ha='center',
+                             va='center', color='black')
+
+        axes[i].set_title(subplot_labels[i])
+        axes[i].set_xlabel(column)
+        axes[i].set_ylabel('Frequency')
+        axes[i].tick_params(axis='x', rotation=rotation)
+        axes[i].set_yscale(yscale)
+
+    # Adjust layout and add the main title
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.9, hspace=0.6)
+    fig.suptitle(plot_title, fontsize=16)
+    fig.subplots_adjust(wspace=0.4)
+
+    # Hide any unused subplots
+    for j in range(i + 1, len(axes)):
+        axes[j].axis('off')
+
+    # Save the plot as a base64 encoded image using the provided function
+    image_base64 = save_plot_as_base64(buffer, plt, rotation, yscale)
+
+    # Convert results list to DataFrame
+    results_df = pd.concat([pd.DataFrame([row]) for row in results_list], ignore_index=True)
+
+    return image_base64, results_df
+
