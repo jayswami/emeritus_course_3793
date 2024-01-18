@@ -118,8 +118,10 @@ def create_stacked_bar_plot_multi(grouping_columns, plot_title, df_cleaned,rotat
 
 # Example usage:
 # image_base64 = create_stacked_bar_plot(['Department', 'Experience_Level'], 'Department and Experience Level Acceptance Rate', df_cleaned, ordering=['Sales', 'HR', 'IT'])
-
 def create_subplot_grid(df, columns, plot_title, rotation=0, yscale='linear'):
+    # DataFrame to store results
+    results_list = []  # List to collect DataFrame rows
+
     # Create a 3x2 subplot grid
     fig, axes = plt.subplots(2, 3, figsize=(15, 10), sharex=False)
     axes = axes.flatten()
@@ -140,6 +142,17 @@ def create_subplot_grid(df, columns, plot_title, rotation=0, yscale='linear'):
             # Percentages for annotation
             accept_percentage = (accept_count / total_count) * 100
             reject_percentage = (reject_count / total_count) * 100
+
+            # Add row to results list
+            results_list.append({
+                'subplot_label': f'Stacked Bar Plot for {column}',
+                'category': category_label,
+                'total_count': total_count,
+                'accept_count': accept_count,
+                'reject_count': reject_count,
+                'accept_percentage': accept_percentage,
+                'reject_percentage': reject_percentage
+            })
 
             axes[i].bar(category_label, accept_count, color='green', alpha=0.6)
             axes[i].bar(category_label, reject_count, bottom=accept_count, color='red', alpha=0.6)
@@ -167,9 +180,13 @@ def create_subplot_grid(df, columns, plot_title, rotation=0, yscale='linear'):
     for j in range(i + 1, len(axes)):
         axes[j].axis('off')
 
+    # Save the plot as a base64 encoded image using the provided function
     image_base64 = save_plot_as_base64(buffer, plt, rotation, yscale)
 
-    return image_base64
+    # Convert results list to DataFrame
+    results_df = pd.concat([pd.DataFrame([row]) for row in results_list], ignore_index=True)
+
+    return image_base64, results_df
 
 def create_overall_stacked_bar_plot(plot_title, df_cleaned, rotation=0, yscale='linear'):
     plt.figure(figsize=(12, 8))
@@ -213,9 +230,15 @@ def create_overall_stacked_bar_plot(plot_title, df_cleaned, rotation=0, yscale='
 # plot_title = 'Overall Acceptance Rate'
 # image_base64 = create_overall_stacked_bar_plot(plot_title, df_cleaned, rotation=0, yscale='log')
 
-
-def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, group_descriptions, df_cleaned, rotation=0, yscale='linear'):
+def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, group_descriptions, df_cleaned, rotation=0,
+                                         yscale='linear'):
     plt.figure(figsize=(12, 8))
+
+    # DataFrame to store results
+    results_list = []  # List to collect DataFrame rows
+
+    # DataFrame to store results
+    #     results_df = pd.DataFrame(columns=['Group', 'Total_Count', 'Accept_Count', 'Reject_Count', 'Accept_Percentage', 'Reject_Percentage'])
 
     # Apply each filter and plot the corresponding bar
     for i, (filter_condition, label) in enumerate(zip(filters, filter_labels)):
@@ -225,7 +248,6 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
                 filter_condition]
         else:
             filtered_df = df_cleaned
-
 
         # Calculate acceptance counts
         acceptance_counts = filtered_df['Y'].value_counts().reindex([0, 1], fill_value=0)
@@ -237,6 +259,21 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
         accept_percentage = (accept_count / total_count) * 100 if total_count else 0
         reject_percentage = (reject_count / total_count) * 100 if total_count else 0
 
+        # Add row to results list
+        results_list.append({
+            'group_label': label,
+            'total_count': total_count,
+            'accept_count': accept_count,
+            'reject_count': reject_count,
+            'accept_percentage': accept_percentage,
+            'reject_percentage': reject_percentage
+        })
+
+        # Add results to DataFrame
+        #         results_df = results_df.append({'Group': label, 'Total_Count': total_count, 'Accept_Count': accept_count,
+        #                                         'Reject_Count': reject_count, 'Accept_Percentage': accept_percentage,
+        #                                         'Reject_Percentage': reject_percentage}, ignore_index=True)
+
         # Plot bars
         plt.bar(label, accept_count, color='green', alpha=0.6)
         plt.bar(label, reject_count, bottom=accept_count, color='red', alpha=0.6)
@@ -245,7 +282,8 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
         if accept_count > 0:
             plt.text(label, accept_count / 2, f'{accept_percentage:.1f}%', ha='center', va='center', color='black')
         if reject_count > 0:
-            plt.text(label, accept_count + reject_count / 2, f'{reject_percentage:.1f}%', ha='center', va='center', color='black')
+            plt.text(label, accept_count + reject_count / 2, f'{reject_percentage:.1f}%', ha='center', va='center',
+                     color='black')
 
     # Set plot parameters
     plt.xticks(rotation=rotation)
@@ -256,16 +294,69 @@ def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, gro
     plt.tight_layout()
     plt.subplots_adjust(bottom=0.2)
 
-
     if group_descriptions is not None:
         legend_labels = [f'{key}: {value}' for key, value in group_descriptions.items()]
         plt.legend(title='Group Descriptions', title_fontsize='13', loc='upper right', labels=legend_labels,
                    borderaxespad=0.)
 
-    image_base64 = save_plot_as_base64(buffer, plt, rotation,yscale)
+    image_base64 = save_plot_as_base64(buffer, plt, rotation, yscale)
 
+    results_df = pd.concat([pd.DataFrame([row]) for row in results_list], ignore_index=True)
 
-    return image_base64
+    return image_base64, results_df
+
+# def create_stacked_bar_plot_with_filters(filters, filter_labels, plot_title, group_descriptions, df_cleaned, rotation=0, yscale='linear'):
+#     plt.figure(figsize=(12, 8))
+#
+#     # Apply each filter and plot the corresponding bar
+#     for i, (filter_condition, label) in enumerate(zip(filters, filter_labels)):
+#         # Apply filter
+#         if filter_condition is not None:
+#             filtered_df = df_cleaned.query(filter_condition) if isinstance(filter_condition, str) else df_cleaned[
+#                 filter_condition]
+#         else:
+#             filtered_df = df_cleaned
+#
+#
+#         # Calculate acceptance counts
+#         acceptance_counts = filtered_df['Y'].value_counts().reindex([0, 1], fill_value=0)
+#         total_count = acceptance_counts.sum()
+#         accept_count = acceptance_counts.get(1, 0)
+#         reject_count = acceptance_counts.get(0, 0)
+#
+#         # Percentages for annotation
+#         accept_percentage = (accept_count / total_count) * 100 if total_count else 0
+#         reject_percentage = (reject_count / total_count) * 100 if total_count else 0
+#
+#         # Plot bars
+#         plt.bar(label, accept_count, color='green', alpha=0.6)
+#         plt.bar(label, reject_count, bottom=accept_count, color='red', alpha=0.6)
+#
+#         # Annotate bars
+#         if accept_count > 0:
+#             plt.text(label, accept_count / 2, f'{accept_percentage:.1f}%', ha='center', va='center', color='black')
+#         if reject_count > 0:
+#             plt.text(label, accept_count + reject_count / 2, f'{reject_percentage:.1f}%', ha='center', va='center', color='black')
+#
+#     # Set plot parameters
+#     plt.xticks(rotation=rotation)
+#     plt.title(plot_title)
+#     plt.ylabel('Frequency')
+#     plt.xlabel('Groups')
+#     plt.yscale(yscale)
+#     plt.tight_layout()
+#     plt.subplots_adjust(bottom=0.2)
+#
+#
+#     if group_descriptions is not None:
+#         legend_labels = [f'{key}: {value}' for key, value in group_descriptions.items()]
+#         plt.legend(title='Group Descriptions', title_fontsize='13', loc='upper right', labels=legend_labels,
+#                    borderaxespad=0.)
+#
+#     image_base64 = save_plot_as_base64(buffer, plt, rotation,yscale)
+#
+#
+#     return image_base64
 
 
 # function to save a png to a buffer in memory
@@ -369,4 +460,6 @@ def create_subplot_grid_dflist(dfs, column, plot_title, subplot_labels, rotation
     results_df = pd.concat([pd.DataFrame([row]) for row in results_list], ignore_index=True)
 
     return image_base64, results_df
+
+
 
