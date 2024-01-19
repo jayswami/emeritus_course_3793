@@ -20,6 +20,8 @@ GitHub: https://github.com/jayswami
 Creation Date: 2024-01-18
 Last Updated: 2024-01-18
 
+Note: Documentation for this module is currently a work in progress and will be updated soon.
+
 Module Description:
 This module, 'BarPlotter', offers a suite of utility functions specifically tailored for visualizing coupon acceptance 
 and rejection data. Utilizing Seaborn, a powerful Python visualization library, it creates stacked bar graphs that 
@@ -71,6 +73,30 @@ buffer = io.BytesIO()
 
 
 def create_stacked_bar_plot(grouping_column, plot_title, df_cleaned, rot=0, ordering=None):
+    """
+        Creates a stacked bar plot to visualize the acceptance and rejection rates.
+
+        This function generates a stacked bar plot that displays the distribution frequency
+        of accepted and rejected responses in the given DataFrame. The acceptance and
+        rejection rates are annotated on the bars for clarity.
+
+        Parameters:
+        - grouping_column (str or list): Column name(s) in the DataFrame to group data by.
+                                         If a string is provided, it is converted into a list.
+        - plot_title (str): Title of the plot.
+        - df_cleaned (DataFrame): The cleaned DataFrame containing the data to be plotted.
+        - rot (int, optional): Degrees of rotation for x-axis labels. Default is 0.
+        - ordering (list, optional): Specific order for categories on the x-axis. Default is None.
+
+        Returns:
+        - str: A base64 string representation of the generated plot.
+
+        The function calculates the acceptance and rejection counts and percentages for each
+        category in the grouping column. It then creates a stacked bar plot with these values,
+        where the y-axis represents the frequency and the bars are color-coded for acceptance
+        (green) and rejection (red). Percentages are displayed on the bars for easy reading.
+
+        """
     # Check if grouping_column is a list, if not, make it a list
     if not isinstance(grouping_column, list):
         grouping_column = [grouping_column]
@@ -128,20 +154,21 @@ def create_stacked_bar_plot(grouping_column, plot_title, df_cleaned, rot=0, orde
 
 def create_stacked_bar_plot_multi(grouping_columns, plot_title, df_cleaned, rotation=0, yscale='linear', ordering=None):
     """
-    Creates a stacked bar plot with multiple grouping columns and returns the plot as a base64 encoded image string
-    along with a DataFrame containing counts and acceptance rates for each category.
+        Create a stacked bar plot with multiple grouping columns and return the plot as a base64-encoded image string
+        along with a DataFrame containing counts and acceptance rates for each category.
 
-    Parameters:
-    - grouping_columns (str or list): The column(s) used for grouping the data.
-    - plot_title (str): The title for the stacked bar plot.
-    - df_cleaned (DataFrame): The cleaned DataFrame containing the data to be plotted.
-    - rotation (int, optional): The rotation angle for x-axis labels. Default is 0.
-    - yscale (str, optional): The y-axis scale type ('linear' or 'log'). Default is 'linear'.
-    - ordering (list, optional): A list specifying the desired order of categories. Default is None.
+        Parameters:
+        - grouping_columns (str or list): The column(s) used for grouping the data.
+        - plot_title (str): The title for the stacked bar plot.
+        - df_cleaned (DataFrame): The cleaned DataFrame containing the data to be plotted.
+        - rotation (int, optional): The rotation angle for x-axis labels. Default is 0.
+        - yscale (str, optional): The y-axis scale type ('linear' or 'log'). Default is 'linear'.
+        - ordering (list, optional): A list specifying the desired order of categories. Default is None.
 
-    Returns:
-    - A tuple containing the base64 encoded image string and a DataFrame with counts and acceptance rates.
-    """
+        Returns:
+        - A tuple containing the base64-encoded image string and a DataFrame with counts and acceptance rates.
+        
+        """
 
     # Ensure grouping_columns is a list
     if not isinstance(grouping_columns, list):

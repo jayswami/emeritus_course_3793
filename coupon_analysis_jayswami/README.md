@@ -1,14 +1,20 @@
 # Coupon Analysis Project
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Running the Project](#running-the-project)
-4. [Documentation](#documentation)
-5. [Contributing](#contributing)
+## Overview
+This project aims to analyze coupon data to uncover insights into consumer behavior and the effectiveness of different coupon strategies. It features in-depth data analysis and visualization, primarily using Python in Jupyter Notebooks.
 
-## Introduction
-This project is focused on analyzing coupon data to extract valuable insights. It includes Jupyter Notebooks for data analysis and visualization.
+## Table of Contents
+1. [Installation](#installation)
+2. [Project Structure](#project-structure)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
+
+## Installation
+### Prerequisites
+- Python 3.x
+- pip (Python package manager)
+
 
 ## Installation
 
@@ -29,7 +35,29 @@ This project is focused on analyzing coupon data to extract valuable insights. I
    ```
    pip install -r requirements.txt
    ```
-   > Note: If a `requirements.txt` file is not present, you can generate one using `pip freeze > requirements.txt` in an environment where the project runs successfully.
+
+
+## Project Structure
+- `data/`: Dataset files (e.g., `coupons.csv`).
+- `notebooks/`: Jupyter notebooks (`DriverCouponAnalysis_1.ipynb`, `DriverCouponAnalysis_2.ipynb`).
+- `barplotter/`: Custom `BarPlotter` module for enhanced visualizations.
+- `docs/`: Documentation and findings.
+- `images/`: Image files used in the project.
+- `LICENSE`: License file.
+- `README.md`: Project documentation.
+
+## Usage
+### Running the Notebooks
+1. Start Jupyter Notebook:
+
+2. Open the desired notebook from the browser interface.
+
+### BarPlotter Module
+- Located in the `barplotter/` directory.
+- Refer to the module documentation for detailed usage instructions.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Running the Project
 
