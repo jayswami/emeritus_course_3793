@@ -167,7 +167,7 @@ def create_stacked_bar_plot_multi(grouping_columns, plot_title, df_cleaned, rota
 
         Returns:
         - A tuple containing the base64-encoded image string and a DataFrame with counts and acceptance rates.
-        
+
         """
 
     # Ensure grouping_columns is a list

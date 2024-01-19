@@ -15,13 +15,6 @@ This project aims to analyze coupon data to uncover insights into consumer behav
 - Python 3.x
 - pip (Python package manager)
 
-
-## Installation
-
-### Prerequisites
-- Python 3.x
-- pip (Python package manager)
-
 ### Steps
 1. Clone the repository to your local machine.
    ```
@@ -36,7 +29,6 @@ This project aims to analyze coupon data to uncover insights into consumer behav
    pip install -r requirements.txt
    ```
 
-
 ## Project Structure
 - `data/`: Dataset files (e.g., `coupons.csv`).
 - `notebooks/`: Jupyter notebooks (`DriverCouponAnalysis_1.ipynb`, `DriverCouponAnalysis_2.ipynb`).
@@ -47,39 +39,28 @@ This project aims to analyze coupon data to uncover insights into consumer behav
 - `README.md`: Project documentation.
 
 ## Usage
-### Running the Notebooks
-1. Start Jupyter Notebook:
 
+**Running the Notebooks:**
+1. Start Jupyter Notebook.
 2. Open the desired notebook from the browser interface.
 
-### BarPlotter Module
+**Notebooks Available:**
+- `DriverCouponAnalysis_1.ipynb`: Contains initial data clean up, assessment, and detailed Bar Coupon Analysis with the final report.
+- `DriverCouponAnalysis_2.ipynb`: Contains detailed Coffee House Coupon Analysis with the final report.
+
+**BarPlotter Module:**
 - Located in the `barplotter/` directory.
-- Refer to the module documentation for detailed usage instructions.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The BarPlotter module is a custom visualization tool designed to enhance your data visualization capabilities. It allows you to create stacked bar plots with ease, making it ideal for showcasing data distributions and comparing multiple categories.
 
-## Running the Project
+This module provides a convenient way to generate visually appealing bar plots, annotate them with acceptance and rejection rates, and customize their appearance. With BarPlotter, you can effectively visualize your data, especially when analyzing coupon data or any other dataset that requires stacked bar plots.
 
-### Running Jupyter Notebooks
-1. If you haven't installed Jupyter Notebook yet, install it using pip:
-   ```
-   pip install notebook
-   ```
-2. To start the Jupyter Notebook server, run:
-   ```
-   jupyter notebook
-   ```
-3. Your browser will open with a list of available notebooks. Click on the desired notebook to open it.
+Please note that the module documentation is a work in progress (WIP). We are actively working on providing detailed usage instructions and examples to help you make the most of BarPlotter for your data visualization needs.
 
-### Using the Notebooks
-- Run cells sequentially using Shift + Enter.
-- Make sure to run all cells for proper initialization and data loading.
-- You can modify and re-run cells to experiment with different parameters and data.
+Stay tuned for updates to the documentation as we continue to enhance BarPlotter's functionality.
 
 ## Documentation
 For detailed documentation, visit the `docs/` folder. It contains comprehensive guides and explanations about the methodologies and data used in this project.
 
-## Contributing
-Contributions to this project are welcome. Please refer to the contributing guidelines for more information.
-
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
