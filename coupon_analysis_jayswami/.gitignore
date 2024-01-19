@@ -1,2 +1,13 @@
+# IDE-specific files
+.idea/
+.DS_Store
+
+# Python cache files
 __pycache__/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Other unnecessary files
+# Add any other file patterns or directories you want to ignore
 
